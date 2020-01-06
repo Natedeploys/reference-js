@@ -11,9 +11,13 @@ Please ensure your pull request adheres to the following guidelines:
 - End all descriptions with a full stop/period.
 - Check your spelling and grammar.
 
+## Local Development
+
+When you clone the repository, include your function in index.js and use node to test with example.js.
+
 ## Contribution to GitHub steps
 
-- Fork it!
+- Clone the repository
 - Create your branch: `git checkout -b my-new-branch`
 - Commit your changes: `git commit -am 'Fixed typo'`
 - Push to the branch: `git push origin my-new-branch`
@@ -21,5 +25,4 @@ Please ensure your pull request adheres to the following guidelines:
 
 ## Updating your Pull Request
 
-Sometimes, a maintainer of an this list will ask you to edit your Pull Request before it is included.
-This is normally due to spelling errors or because your PR didn't match the guidelines.
+A maintainer may ask you to edit your Pull Request before it is included, this is standard procedure.

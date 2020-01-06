@@ -22,7 +22,13 @@ const fileExistsCheck = path => {
  * @returns {JSON}
  */
 
-const BibTeXToJSON = path => {};
+const BibTeXToJSON = path => {
+  fs.readFile(path, "utf8", (err, data) => {
+    if (!err) {
+      console.log(data); // <Buffer ...>
+    }
+  });
+};
 
 /**
  * @function - Converts JSON to BibTeX
@@ -34,5 +40,6 @@ const JSONToBibTeX = path => {};
 
 module.exports = {
   fileExistsCheck,
-  BibTeXToJSON
+  BibTeXToJSON,
+  JSONToBibTeX
 };
