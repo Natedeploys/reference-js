@@ -16,7 +16,7 @@ const fileExistsCheck = path => {
   });
 };
 
-const BibtexToJSON = file => {};
+const BibtexToJSON = path => {};
 
 module.exports = {
   fileExistsCheck,

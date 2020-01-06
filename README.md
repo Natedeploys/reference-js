@@ -64,8 +64,8 @@ npm install @devisle/reference-js
 
 Require in Node as
 
-```
-const { BibTexToJSON = require("@devisle/reference-js");
+```js
+const { BibTexToJSON } = require("@devisle/reference-js");
 ```
 
 ## 🔧 Running the tests <a name = "tests"></a>
