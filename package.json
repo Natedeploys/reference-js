@@ -1,0 +1,14 @@
+{
+  "name": "@devisle/reference-js",
+  "version": "1.0.0",
+  "description": "Conversion library for Reference Manager formats",
+  "license": "MIT",
+  "repository": "devisle/reference-js",
+  "main": "index.js",
+  "keywords": [
+    "reference",
+    "npm",
+    "package",
+    "js"
+  ]
+}
