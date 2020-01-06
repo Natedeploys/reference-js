@@ -1,6 +1,7 @@
 <p align="center">
+  <br>
   <a href="" rel="noopener">
- <img width=267px height=80px src="https://i.imgur.com/ttvAaZe.png" alt="Project logo"></a>
+ <img width=267px height=80px src="https://i.imgur.com/K4zwgBt.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">@devisle/reference-js</h3>
@@ -51,7 +52,7 @@ BibTeXToJSON("file:///current/dir/references.bib");
 
 ## 🧐 About <a name = "about"></a>
 
-Reference-js is a collection of helpers for Node that allow you to import, export and convert between BibTeX, EndNote, XML, JSON files and more.
+Reference JS is a collection of functions for Node that allow you to import, export and convert between BibTeX, EndNote, XML, JSON files and more.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
