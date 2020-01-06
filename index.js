@@ -16,9 +16,23 @@ const fileExistsCheck = path => {
   });
 };
 
-const BibtexToJSON = path => {};
+/**
+ * @function - Converts BibTeX to JSON
+ * @param {string, buffer, URL} path
+ * @returns {JSON}
+ */
+
+const BibTeXToJSON = path => {};
+
+/**
+ * @function - Converts JSON to BibTeX
+ * @param {string, buffer, URL} path
+ * @returns {JSON}
+ */
+
+const JSONToBibTeX = path => {};
 
 module.exports = {
   fileExistsCheck,
-  BibtexToJSON
+  BibTeXToJSON
 };

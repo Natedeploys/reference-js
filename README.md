@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> For all the popular Reference Manager formats
     <br> 
 </p>
 
@@ -34,7 +34,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Reference-js is a collection of helpers for Node that allow you to import, export and convert between BibTex, EndNote, XML, JSON files and more.
+Reference-js is a collection of helpers for Node that allow you to import, export and convert between BibTeX, EndNote, XML, JSON files and more.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -65,7 +65,10 @@ npm install @devisle/reference-js
 Require in Node as
 
 ```js
-const { BibTexToJSON } = require("@devisle/reference-js");
+const { BibTeXToJSON } = require("@devisle/reference-js");
+
+//Returns JSON
+BibTeX("file:///current/dir/references.bib");
 ```
 
 ## 🔧 Running the tests <a name = "tests"></a>
