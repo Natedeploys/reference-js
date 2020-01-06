@@ -38,7 +38,7 @@ Reference-js is a collection of helpers for Node that allow you to import, expor
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-These instructions will set reference-js up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to use the API.
+These instructions will set reference-js up and running on your local machine for development and testing purposes. See [Usage](#usage) for notes on how to use the API.
 
 ### Prerequisites
 
@@ -84,11 +84,11 @@ npm run test
 
 Formats from Reference managers can be converted into JSON and back. Using this approach, you are able to leverage the library to convert between other formats e.g. Bibtex to JSON to RIS behind the scenes.
 
+API Coming soon.
+
 ## 🚀 Deployment <a name = "deployment"></a>
 
 We recommend storing your references in JSON format as it is highly compatible with NoSQL databases and Web Applications.
-
-API Coming soon.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
