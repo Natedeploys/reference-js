@@ -14,12 +14,12 @@ We recommend storing your references in JSON format as it is highly compatible w
 
 In Progress:
 
-[ ] - Bibtex to JSON
+[ ] - Bibtex to JSON  
 [ ] - JSON to Bibtex
 
 Future:
 
-[ ] - XML to JSON
-[ ] - JSON to XML
-[ ] - RIS to JSON
+[ ] - XML to JSON  
+[ ] - JSON to XML  
+[ ] - RIS to JSON  
 [ ] - JSON to RIS
