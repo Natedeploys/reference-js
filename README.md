@@ -22,7 +22,7 @@
 
 ## 📝 Table of Contents
 
-- [About](#about)
+- [Quick Start](#quick)
 - [Getting Started](#getting_started)
 - [Deployment](#deployment)
 - [Usage](#usage)
@@ -31,6 +31,23 @@
 - [Contributing](CONTRIBUTING.md)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
+
+## ⌛️ Quick Start <a name = "quick"></a>
+
+See it on [npm](https://www.npmjs.com/package/@devisle/reference-js)
+
+```
+npm install @devisle/reference-js
+```
+
+Use like below
+
+```js
+const { BibTeXToJSON } = require("@devisle/reference-js");
+
+//Returns JSON
+BibTeXToJSON("file:///current/dir/references.bib");
+```
 
 ## 🧐 About <a name = "about"></a>
 
@@ -83,6 +100,8 @@ Run the tests using:
 npm run test
 ```
 
+Further information on [Contributing](CONTRIBUTING.md)
+
 ## 🎈 Usage <a name="usage"></a>
 
 Formats from Reference managers can be converted into JSON and back. Using this approach, you are able to leverage the library to convert between other formats e.g. Bibtex to JSON to RIS behind the scenes.
@@ -95,6 +114,7 @@ We recommend storing your references in JSON format as it is highly compatible w
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
+- [Jest](https://jestjs.io/) - Testing Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
 
 ## ✍️ Authors <a name = "authors"></a>

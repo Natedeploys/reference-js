@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { parseBibTex } = require("./utilities/BibTexParsers");
 
 /**
  * @function - Checks if the file exists
@@ -23,9 +24,11 @@ const fileExistsCheck = path => {
  */
 
 const BibTeXToJSON = path => {
-  fs.readFile(path, "utf8", (err, data) => {
+  fs.readFile(__dirname + path, "utf8", (err, data) => {
     if (!err) {
-      console.log(data); // <Buffer ...>
+      console.log(parseBibTex(data.toString()));
+    } else {
+      console.log(err);
     }
   });
 };

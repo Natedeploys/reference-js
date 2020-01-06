@@ -1,0 +1,37 @@
+<bib name="IT">
+  <book id="b001" year="1994">
+    <title>TCP/IP Illustrated</title>
+    <author>
+      <last>Stevens</last>
+      <first>W.</first>
+    </author>
+    <publisher>Addison-Wesley</publisher>
+  </book>
+  <book id="b002" year="2000">
+    <title>Data on the Web</title>
+    <author>
+      <last>Abiteboul</last>
+      <first>Serge</first>
+    </author>
+    <author>
+      <last>Buneman</last>
+      <first>Peter</first>
+    </author>
+    <author>
+      <last>Suciu</last>
+      <first>Dan</first>
+    </author>
+    <publisher>Morgan Kaufmann</publisher>
+  </book>
+  <journal id="j001" year="1998">
+    <title>XML</title>
+    <editor>
+      <last>Date</last>
+      <first>C.</first>
+    </editor>
+    <editor>
+      <last>Gerbarg</last>
+      <first>M.</first>
+    </editor>
+  </journal>
+</bib>
