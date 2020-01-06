@@ -68,7 +68,7 @@ Require in Node as
 const { BibTeXToJSON } = require("@devisle/reference-js");
 
 //Returns JSON
-BibTeX("file:///current/dir/references.bib");
+BibTeXToJSON("file:///current/dir/references.bib");
 ```
 
 ## 🔧 Running the tests <a name = "tests"></a>
