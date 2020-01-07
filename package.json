@@ -8,7 +8,7 @@
   "scripts": {
     "test": "jest --verbose",
     "lint": "eslint '**/*.js' --fix",
-    "format": "prettier-eslint '**/*.js' --write"
+    "format": "prettier-eslint $PWD/'**/*.js' --write"
   },
   "lint-staged": {
     "**/*.js": [
@@ -26,7 +26,7 @@
   "dependencies": {},
   "husky": {
     "hooks": {
-      "pre-commit": "npm test && lint-stage",
+      "pre-commit": "npm test && lint-staged",
       "pre-push": "npm test"
     }
   },

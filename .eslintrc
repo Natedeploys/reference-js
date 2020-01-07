@@ -1,7 +1,13 @@
 {
   "env": {
+    "jest": true,
     "node": true
   },
+  "rules": {
+    "no-console": "off"
+  },
   "extends": "airbnb-base",
-  "plugins": ["promise"]
+  "plugins": [
+    "promise"
+  ]
 }
