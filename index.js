@@ -8,11 +8,9 @@ const { parseBibTex } = require("./utilities/BibTexParsers");
  */
 
 const fileExistsCheck = path => {
-  fs.access(path, fs.constants.F_OK, err => {
+  fs.access(__dirname + path, fs.constants.F_OK, err => {
     if (err) {
       return err;
-    } else {
-      return;
     }
   });
 };
@@ -23,15 +21,19 @@ const fileExistsCheck = path => {
  * @returns {JSON}
  */
 
-const BibTeXToJSON = path => {
-  fs.readFile(__dirname + path, "utf8", (err, data) => {
-    if (!err) {
-      console.log(parseBibTex(data.toString()));
-    } else {
-      console.log(err);
-    }
+const BibTeXToJSON = path =>
+  new Promise((resolve, reject) => {
+    let error = fileExistsCheck(path);
+    fs.readFile(__dirname + path, "utf8", (err, data) => {
+      error = err;
+      if (!error) {
+        const parsedData = parseBibTex(data.toString());
+        resolve(parsedData);
+      } else {
+        reject(error.message);
+      }
+    });
   });
-};
 
 /**
  * @function - Converts JSON to BibTeX
