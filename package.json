@@ -23,7 +23,9 @@
     "package",
     "js"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "esprima": "^4.0.1"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "npm test && lint-staged",

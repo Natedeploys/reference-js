@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { parseBibtex } = require('./utilities/BibTexParsers');
+const { parseBibtex } = require('./parsers/bibtexParsers');
 
 /**
  * @function - Checks if the file exists
@@ -28,7 +28,7 @@ const bibtexToJSON = (loc) => new Promise((resolve, reject) => {
   fs.readFile(path.join(__dirname, loc), 'utf8', (err, data) => {
     error = err;
     if (!error) {
-      const parsedData = parseBibtex(data.toString());
+      const parsedData = parseBibtex(data);
       resolve(parsedData);
     } else {
       reject(error.message);
