@@ -121,7 +121,7 @@ We recommend storing your references in JSON format as it is highly compatible w
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [Esprima](https://www.npmjs.com/package/esprima) - Esprima parser 
+- [Chevrotain](https://sap.github.io/chevrotain/docs/) - Parser toolkit
 - [Jest](https://jestjs.io/) - Testing Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
 

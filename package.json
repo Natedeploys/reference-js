@@ -24,7 +24,7 @@
     "js"
   ],
   "dependencies": {
-    "esprima": "^4.0.1"
+    "chevrotain": "^6.5.0"
   },
   "husky": {
     "hooks": {
