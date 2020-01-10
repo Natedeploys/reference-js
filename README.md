@@ -18,7 +18,7 @@
 ---
 
 <p align="center"> For all the popular Reference Manager formats
-    <br> 
+    <br>
 </p>
 
 ## 📝 Table of Contents
@@ -54,7 +54,7 @@ BibTeXToJSON("file:///current/dir/references.bib");
 
 Reference JS is a collection of parsing functions for Node that allow you to import, export and convert between BibTeX, EndNote, XML, JSON files and more.
 
-Reference Managers are software tools used to organise research work. We aim to tackle the vast Reference Manager format types that exist i.e. bibtex, f1000, XML. 
+Reference Managers are software tools used to organise research work. We aim to tackle the vast Reference Manager format types that exist i.e. bibtex, f1000, XML.
 
 By parsing all formats into JSON, we alleviate the need to for JSON based storage and point-to-point conversion i.e. Bibtex to JSON to XML.
 
@@ -130,6 +130,7 @@ We recommend storing your references in JSON format as it is highly compatible w
 
 - [@natedeploys](https://github.com/Natedeploys) - Idea & Initial work
 - [@endormi](https://github.com/endormi) - Contributor
+- [@shreyas1307](https://github.com/shreyas1307) - Contributor
 
 What is the Dev Isle?
 
