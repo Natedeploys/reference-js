@@ -122,6 +122,7 @@ We recommend storing your references in JSON format as it is highly compatible w
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [Chevrotain](https://sap.github.io/chevrotain/docs/) - Parser toolkit
+- [regex101](https://regex101.com/) - Regex Tester
 - [Jest](https://jestjs.io/) - Testing Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
 

@@ -4,17 +4,23 @@ const { createToken } = chevrotain;
 
 const typeProperty = createToken({
   name: 'Type',
-  pattern: /ARTICLE|BOOK|INCOLLECTION|PHDTHESIS|TECHREPORT|MISC/,
+  pattern: /@ARTICLE|@BOOK|@INCOLLECTION|@PHDTHESIS|@TECHREPORT|@MISC|@INPROCEEDINGS/i,
 });
-const keyProperty = createToken({ name: 'Key', pattern: /[a-z]{4}[0-9][0-9]/ });
+const keyProperty = createToken({ name: 'Key', pattern: /[a-z]{4}[0-9][0-9]/i });
 const generalProperty = createToken({
   name: 'Field',
-  pattern: /AUTHOR.*|TITLE.*|JOURNAL.*|VOLUME.*|YEAR.*|NUMBER.*|PAGES.*|EDITION.*|PUBLISHER.*|ADDRESS.*|VOLUME.*|SERIES.*|BOOKTITLE.*|EDITOR.*|NOTE.*|HOWPUBLISHED.*/,
+  pattern: /AUTHOR.*|TITLE.*|JOURNAL.*|VOLUME.*|YEAR.*|NUMBER.*|PAGES.*|EDITION.*|PUBLISHER.*|ADDRESS.*|VOLUME.*|SERIES.*|BOOKTITLE.*|EDITOR.*|NOTE.*|HOWPUBLISHED.*|DOI.*|MONTH.*|URL.*|ORGANIZATION.*/i,
 });
 
 const SelectLexer = new chevrotain.Lexer([typeProperty, generalProperty, keyProperty], {
   positionTracking: 'onlyOffset',
 });
+
+/**
+ * @function - Transforms a token vector into JSON
+ * @param {vector} Tokens
+ * @returns {Array}
+ */
 
 const transformToJSON = (parsedData) => {
   const bibtexArray = [];
@@ -22,7 +28,7 @@ const transformToJSON = (parsedData) => {
 
   parsedData.tokens.forEach(({ image, tokenType: { name } }, index) => {
     if (name === 'Type') {
-      item.type = image;
+      item.type = image.replace(/@/, '');
     }
 
     if (name === 'Key') {
@@ -30,9 +36,9 @@ const transformToJSON = (parsedData) => {
     }
 
     if (name === 'Field') {
-      const str = image.split(' = ');
-      const property = str[0];
-      item[property] = str[1];
+      const str = image.split(/[=]/gm);
+      const property = str[0].replace(/[ \t]+$/, '');
+      item[property] = str[1].replace(/^\s+/, '');
 
       if (
         parsedData.tokens[index + 1] === undefined
@@ -47,11 +53,23 @@ const transformToJSON = (parsedData) => {
   return bibtexArray;
 };
 
+/**
+ * @function - Cleans the string and transforms into token vector
+ * @param {string, buffer, URL} path
+ * @returns {Array}
+ */
+
 const parseBibtex = (data) => {
   const dataString = data.toString();
   const noComments = dataString.replace(/^%(.*\n)/gm, '');
-  const content = noComments.replace(/[*@{},]/gm, '');
-  const parsedData = SelectLexer.tokenize(content);
+  const typeLine = noComments.replace(
+    /ARTICLE|BOOK|INCOLLECTION|PHDTHESIS|TECHREPORT|MISC|INPROCEEDINGS/gim,
+    '$&\n',
+  );
+  const cleansed = typeLine.replace(/['*{},"]/gm, '');
+  const parsedData = SelectLexer.tokenize(cleansed);
+
+  // console.log(cleansed)
 
   return transformToJSON(parsedData);
 };
