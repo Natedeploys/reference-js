@@ -54,9 +54,9 @@ const transformToJSON = (parsedData) => {
 };
 
 /**
- * @function - Cleans the string and transforms into token vector
+ * @function - Cleans the string, tokenizes and returns json
  * @param {string, buffer, URL} path
- * @returns {Array}
+ * @returns {JSON}
  */
 
 const parseBibtex = (data) => {
@@ -69,11 +69,18 @@ const parseBibtex = (data) => {
   const cleansed = typeLine.replace(/['*{},"]/gm, '');
   const parsedData = SelectLexer.tokenize(cleansed);
 
-  // console.log(cleansed)
-
   return transformToJSON(parsedData);
 };
 
+/**
+ * @function - Transform JSON into Bibtex
+ * @param {JSON}
+ * @returns {.bib}
+ */
+
+const parseToBibtex = (data) => JSON.parse(data);
+
 module.exports = {
   parseBibtex,
+  parseToBibtex,
 };
