@@ -1,8 +1,19 @@
 {
-  "author": "Freely, I.P.",
-  "title": "A small paper",
-  "journal": "The journal of small papers",
-  "year": "1997",
-  "volume": "-1",
-  "note": "to appear"
+  "references": [
+    {
+      "type": "inproceedings",
+      "key": "erry20",
+      "title": "Revisiting Character-Based Neural Machine Translation with Capacity and Compression",
+      "author": "Cherry Colin and"
+    },
+    {
+      "type": "book",
+      "title": "Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing",
+      "year": "2018",
+      "address": "Brussels Belgium",
+      "publisher": "Association for Computational Linguistics",
+      "doi": "10.18653/v1/D18-1461",
+      "pages": "4295--4305"
+    }
+  ]
 }

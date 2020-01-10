@@ -1,5 +1,6 @@
-const fs = require("fs");
-const { parseBibTex } = require("./utilities/BibTexParsers");
+const fs = require('fs');
+const path = require('path');
+const { parseBibtex } = require('./parsers/bibtexParsers');
 
 /**
  * @function - Checks if the file exists
@@ -7,13 +8,12 @@ const { parseBibTex } = require("./utilities/BibTexParsers");
  * @returns {error}
  */
 
-const fileExistsCheck = path => {
-  fs.access(path, fs.constants.F_OK, err => {
+const fileExistsCheck = (loc) => {
+  fs.access(path.join(__dirname, loc), fs.constants.F_OK, (err) => {
     if (err) {
       return err;
-    } else {
-      return;
     }
+    return null;
   });
 };
 
@@ -23,26 +23,20 @@ const fileExistsCheck = path => {
  * @returns {JSON}
  */
 
-const BibTeXToJSON = path => {
-  fs.readFile(__dirname + path, "utf8", (err, data) => {
-    if (!err) {
-      console.log(parseBibTex(data.toString()));
+const bibtexToJSON = (loc) => new Promise((resolve, reject) => {
+  let error = fileExistsCheck(loc);
+  fs.readFile(path.join(__dirname, loc), 'utf8', (err, data) => {
+    error = err;
+    if (!error) {
+      const parsedData = parseBibtex(data);
+      resolve(parsedData);
     } else {
-      console.log(err);
+      reject(error.message);
     }
   });
-};
-
-/**
- * @function - Converts JSON to BibTeX
- * @param {string, buffer, URL} path
- * @returns {JSON}
- */
-
-const JSONToBibTeX = path => {};
+});
 
 module.exports = {
   fileExistsCheck,
-  BibTeXToJSON,
-  JSONToBibTeX
+  bibtexToJSON,
 };

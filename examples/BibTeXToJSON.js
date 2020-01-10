@@ -1,4 +1,6 @@
-const { BibTeXToJSON } = require("../index");
+const { bibtexToJSON } = require('../index');
 
 // Path relative to where index.js is
-BibTeXToJSON("/samples/references.bib");
+bibtexToJSON('/samples/references.bib')
+  .then((data) => console.log(data))
+  .catch((error) => console.log(error));

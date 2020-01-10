@@ -6,7 +6,16 @@
   "repository": "devisle/reference-js",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "lint": "eslint '**/*.js' --fix",
+    "format": "prettier-eslint $PWD/'**/*.js' --write"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "prettier-eslint --write",
+      "git add"
+    ]
   },
   "keywords": [
     "reference",
@@ -14,15 +23,23 @@
     "package",
     "js"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "chevrotain": "^6.5.0"
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test",
+      "pre-commit": "npm test && lint-staged",
       "pre-push": "npm test"
     }
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-promise": "^4.2.1",
     "husky": "^3.1.0",
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "prettier-eslint-cli": "^5.0.0"
   }
 }

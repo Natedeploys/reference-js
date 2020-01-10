@@ -1,0 +1,20 @@
+{
+  "env": {
+    "jest": true,
+    "node": true
+  },
+  "rules": {
+    "no-console": "off",
+    "prefer-destructuring": [
+      "error",
+      {
+        "object": false,
+        "array": false
+      }
+    ]
+  },
+  "extends": "airbnb-base",
+  "plugins": [
+    "promise"
+  ]
+}
