@@ -78,7 +78,9 @@ const parseBibtex = (data) => {
  * @returns {.bib}
  */
 
-const parseToBibtex = (data) => JSON.parse(data);
+const parseToBibtex = (data) => {
+  JSON.parse(data);
+};
 
 module.exports = {
   parseBibtex,
