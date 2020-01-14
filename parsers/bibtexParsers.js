@@ -6,18 +6,28 @@ const typeProperty = createToken({
   name: 'Type',
   pattern: /@ARTICLE|@BOOK|@INCOLLECTION|@PHDTHESIS|@TECHREPORT|@MISC|@INPROCEEDINGS|@UNPUBLISHED/i,
 });
+
 const keyProperty = createToken({
   name: 'Key',
   pattern: /([a-zA-Z+-]{2,}[0-9]{2,}[a-zA-Z]*)/i,
 });
+
 const generalProperty = createToken({
   name: 'Field',
-  pattern: /AUTHOR.*|TITLE.*|JOURNAL.*|VOLUME.*|YEAR.*|NUMBER.*|PAGES.*|EDITION.*|PUBLISHER.*|ADDRESS.*|VOLUME.*|SERIES.*|BOOKTITLE.*|EDITOR.*|NOTE.*|HOWPUBLISHED.*|DOI.*|MONTH.*|URL.*|ORGANIZATION.*/i,
+  pattern: /AUTHOR.*|BOOKTITLE.*|\bTITLE.*|JOURNAL.*|VOLUME.*|YEAR.*|NUMBER.*|PAGES.*|EDITION.*|PUBLISHER.*|ADDRESS.*|VOLUME.*|SERIES.*|EDITOR.*|NOTE.*|HOWPUBLISHED.*|DOI.*|MONTH.*|URL.*|ORGANIZATION.*/i,
 });
 
-const SelectLexer = new chevrotain.Lexer([typeProperty, generalProperty, keyProperty], {
-  positionTracking: 'onlyOffset',
+const sentenceProperty = createToken({
+  name: 'Sentence',
+  pattern: /[a-zA-Z0-9-.]+/i,
 });
+
+const SelectLexer = new chevrotain.Lexer(
+  [typeProperty, keyProperty, generalProperty, sentenceProperty],
+  {
+    positionTracking: 'onlyOffset',
+  },
+);
 
 /**
  * @function - Transforms a token vector into JSON
@@ -27,6 +37,7 @@ const SelectLexer = new chevrotain.Lexer([typeProperty, generalProperty, keyProp
 
 const transformToJSON = (parsedData) => {
   const bibtexArray = [];
+  let property = '';
   let item = {};
 
   parsedData.tokens.forEach(({ image, tokenType: { name } }, index) => {
@@ -40,7 +51,7 @@ const transformToJSON = (parsedData) => {
 
     if (name === 'Field') {
       const str = image.split(/[=]/gm);
-      const property = str[0].replace(/[ \t]+$/, '');
+      property = str[0].replace(/[ \t]+$/, '');
       item[property] = str[1].replace(/^\s+/, '');
 
       if (
@@ -49,6 +60,15 @@ const transformToJSON = (parsedData) => {
       ) {
         bibtexArray.push(item);
         item = {};
+        property = '';
+      }
+    }
+
+    if (name === 'Sentence') {
+      if (parsedData.tokens[index + 1].tokenType.name !== 'Sentence') {
+        item[property] += image;
+      } else {
+        item[property] += `${image} `;
       }
     }
   });
@@ -66,13 +86,11 @@ const parseBibtex = (data) => {
   const dataString = data.toString();
   const noComments = dataString.replace(/^%(.*\n)/gm, '');
   const typeLine = noComments.replace(
-    /ARTICLE|BOOK|INCOLLECTION|PHDTHESIS|TECHREPORT|MISC|INPROCEEDINGS/gim,
+    /ARTICLE|\b@BOOK\b|INCOLLECTION|PHDTHESIS|TECHREPORT|MISC|INPROCEEDINGS/gim,
     '$&\n',
   );
   const doubleDashes = typeLine.replace(/--/gm, '-');
   const cleansed = doubleDashes.replace(/['*{},"]/gm, '');
-
-  // console.log(cleansed);
   const parsedData = SelectLexer.tokenize(cleansed);
 
   return transformToJSON(parsedData);
