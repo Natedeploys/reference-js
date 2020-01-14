@@ -4,17 +4,30 @@ const { createToken } = chevrotain;
 
 const typeProperty = createToken({
   name: 'Type',
-  pattern: /@ARTICLE|@BOOK|@INCOLLECTION|@PHDTHESIS|@TECHREPORT|@MISC|@INPROCEEDINGS/i,
-});
-const keyProperty = createToken({ name: 'Key', pattern: /[a-z]{4}[0-9][0-9]/i });
-const generalProperty = createToken({
-  name: 'Field',
-  pattern: /AUTHOR.*|TITLE.*|JOURNAL.*|VOLUME.*|YEAR.*|NUMBER.*|PAGES.*|EDITION.*|PUBLISHER.*|ADDRESS.*|VOLUME.*|SERIES.*|BOOKTITLE.*|EDITOR.*|NOTE.*|HOWPUBLISHED.*|DOI.*|MONTH.*|URL.*|ORGANIZATION.*/i,
+  pattern: /@ARTICLE|@BOOK|@INCOLLECTION|@PHDTHESIS|@TECHREPORT|@MISC|@INPROCEEDINGS|@UNPUBLISHED/i,
 });
 
-const SelectLexer = new chevrotain.Lexer([typeProperty, generalProperty, keyProperty], {
-  positionTracking: 'onlyOffset',
+const keyProperty = createToken({
+  name: 'Key',
+  pattern: /([a-zA-Z+-]{2,}[0-9]{2,}[a-zA-Z]*)/i,
 });
+
+const generalProperty = createToken({
+  name: 'Field',
+  pattern: /AUTHOR.*|BOOKTITLE.*|\bTITLE.*|JOURNAL.*|VOLUME.*|YEAR.*|NUMBER.*|PAGES.*|EDITION.*|PUBLISHER.*|ADDRESS.*|VOLUME.*|SERIES.*|EDITOR.*|NOTE.*|HOWPUBLISHED.*|DOI.*|MONTH.*|URL.*|ORGANIZATION.*/i,
+});
+
+const sentenceProperty = createToken({
+  name: 'Sentence',
+  pattern: /[a-zA-Z0-9-.]+/i,
+});
+
+const SelectLexer = new chevrotain.Lexer(
+  [typeProperty, keyProperty, generalProperty, sentenceProperty],
+  {
+    positionTracking: 'onlyOffset',
+  },
+);
 
 /**
  * @function - Transforms a token vector into JSON
@@ -24,6 +37,7 @@ const SelectLexer = new chevrotain.Lexer([typeProperty, generalProperty, keyProp
 
 const transformToJSON = (parsedData) => {
   const bibtexArray = [];
+  let property = '';
   let item = {};
 
   parsedData.tokens.forEach(({ image, tokenType: { name } }, index) => {
@@ -32,12 +46,12 @@ const transformToJSON = (parsedData) => {
     }
 
     if (name === 'Key') {
-      item.key = image;
+      item.key = image.replace(/{/, '');
     }
 
     if (name === 'Field') {
       const str = image.split(/[=]/gm);
-      const property = str[0].replace(/[ \t]+$/, '');
+      property = str[0].replace(/[ \t]+$/, '');
       item[property] = str[1].replace(/^\s+/, '');
 
       if (
@@ -46,6 +60,15 @@ const transformToJSON = (parsedData) => {
       ) {
         bibtexArray.push(item);
         item = {};
+        property = '';
+      }
+    }
+
+    if (name === 'Sentence') {
+      if (parsedData.tokens[index + 1].tokenType.name !== 'Sentence') {
+        item[property] += image;
+      } else {
+        item[property] += `${image} `;
       }
     }
   });
@@ -54,26 +77,54 @@ const transformToJSON = (parsedData) => {
 };
 
 /**
- * @function - Cleans the string and transforms into token vector
+ * @function - Cleans the string, tokenizes and returns json
  * @param {string, buffer, URL} path
- * @returns {Array}
+ * @returns {JSON}
  */
 
 const parseBibtex = (data) => {
   const dataString = data.toString();
   const noComments = dataString.replace(/^%(.*\n)/gm, '');
   const typeLine = noComments.replace(
-    /ARTICLE|BOOK|INCOLLECTION|PHDTHESIS|TECHREPORT|MISC|INPROCEEDINGS/gim,
+    /ARTICLE|\b@BOOK\b|INCOLLECTION|PHDTHESIS|TECHREPORT|MISC|INPROCEEDINGS/gim,
     '$&\n',
   );
-  const cleansed = typeLine.replace(/['*{},"]/gm, '');
+  const doubleDashes = typeLine.replace(/--/gm, '-');
+  const cleansed = doubleDashes.replace(/['*{},"]/gm, '');
   const parsedData = SelectLexer.tokenize(cleansed);
-
-  // console.log(cleansed)
 
   return transformToJSON(parsedData);
 };
 
+/**
+ * @function - Transform JSON into Bibtex
+ * @param {JSON}
+ * @returns {.bib}
+ */
+
+const parseToBibtex = (data, property) => {
+  let bibtex = '';
+  const list = JSON.parse(data);
+  list[property].forEach((item) => {
+    Object.keys(item).forEach((key) => {
+      switch (key) {
+        case 'type':
+          bibtex += `@${item[key]}`;
+          break;
+        case 'key':
+          bibtex += `{${item[key]},\n`;
+          break;
+        default:
+          bibtex += `${key} = ${item[key]},\n`;
+      }
+    });
+    bibtex += '}\n';
+  });
+
+  return bibtex;
+};
+
 module.exports = {
   parseBibtex,
+  parseToBibtex,
 };

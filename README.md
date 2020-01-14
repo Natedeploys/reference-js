@@ -50,6 +50,8 @@ const { BibTeXToJSON } = require("@devisle/reference-js");
 BibTeXToJSON("file:///current/dir/references.bib");
 ```
 
+See the documentation [here](https://devisle.netlify.com/)
+
 ## 🧐 About <a name = "about"></a>
 
 Reference JS is a collection of parsing functions for Node that allow you to import, export and convert between BibTeX, EndNote, XML, JSON files and more.

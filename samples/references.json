@@ -1,14 +1,259 @@
 {
   "references": [
     {
-      "type": "inproceedings",
-      "key": "erry20",
-      "title": "Revisiting Character-Based Neural Machine Translation with Capacity and Compression",
-      "author": "Cherry Colin and"
+      "type": "ARTICLE",
+      "key": "smit54",
+      "AUTHOR": "J. G. Smith and H. K. Weston",
+      "TITLE": "Nothing Particular in this Years History",
+      "YEAR": "1954",
+      "JOURNAL": "J. Geophys. Res.",
+      "VOLUME": "2",
+      "PAGES": "14-15"
+    },
+    {
+      "type": "BOOK",
+      "key": "colu92",
+      "AUTHOR": "Christopher Columbus",
+      "TITLE": "How I Discovered America",
+      "YEAR": "1492",
+      "PUBLISHER": "Hispanic Press",
+      "ADDRESS": "Barcelona"
+    },
+    {
+      "type": "ARTICLE",
+      "key": "gree00",
+      "AUTHOR": "R. J. Green and U. P. Fred and W. P. Norbert",
+      "TITLE": "Things that Go Bump in the Night",
+      "YEAR": "1900",
+      "JOURNAL": "Psych. Today",
+      "VOLUME": "46",
+      "PAGES": "345-678"
+    },
+    {
+      "type": "ARTICLE",
+      "key": "phil99",
+      "AUTHOR": "T. P. Phillips",
+      "TITLE": "Possible Influence of the Magnetosphere on American History",
+      "YEAR": "1999",
+      "JOURNAL": "J. Oddball Res.",
+      "VOLUME": "98",
+      "PAGES": "1000-1003"
+    },
+    {
+      "type": "ARTICLE",
+      "key": "jame76",
+      "AUTHOR": "Kelly James and Harris Jr. George and Wilby Wollops",
+      "TITLE": "American Independence and Magnetism",
+      "YEAR": "1776",
+      "JOURNAL": "Revol. Tracts",
+      "VOLUME": "32",
+      "PAGES": "34-55"
+    },
+    {
+      "type": "phdthesis",
+      "key": "qwer96",
+      "author": "O P Qwerty",
+      "title": "History of the Goofy Layout of Keyboards",
+      "publisher": "Podunk University Arcana Department",
+      "address": "Podunk IN",
+      "year": "1996"
+    },
+    {
+      "type": "techreport",
+      "key": "robe49",
+      "author": "Robert Swearingen",
+      "title": "Morpholoty and syntax of British sailors’ English",
+      "series": "Technical Report",
+      "volume": "249",
+      "publisher": "Profanity Institute",
+      "address": "New York NY",
+      "year": "1985"
+    },
+    {
+      "type": "incollection",
+      "key": "tomu87",
+      "author": "Tom Upsilon",
+      "title": "Proceedings of the seventh international",
+      "editor": "V W Xavier",
+      "publisher": "Last Resort Publishers",
+      "address": "Philadelphia PA",
+      "year": "1987",
+      "pages": "129--158"
+    },
+    {
+      "type": "misc",
+      "key": "jmen12",
+      "author": "J Mentor",
+      "title": "Behavior of small animals on fire",
+      "howpublished": "Available at \\urlhttp://",
+      "journal": "Nature",
+      "note": "Unpublished Manuscript",
+      "year": "2012"
+    },
+    {
+      "type": "misc",
+      "key": "sigm12",
+      "author": "Sigmund Freud",
+      "month": "July",
+      "year": "2012",
+      "howpublished": "Personal conversation"
+    },
+    {
+      "type": "incollection",
+      "key": "pter20",
+      "author": "Bengio Yoshua and LeCun Yann",
+      "title": "Scaling Learning Algorithms Towards AI",
+      "publisher": "MIT Press",
+      "year": "2007"
+    },
+    {
+      "type": "article",
+      "key": "rich20",
+      "title": "Neural machine translation of rare words with subword units",
+      "author": "Sennrich Rico and Haddow Barry and Birch Alexandra",
+      "journal": "arXiv preprint arXiv:1508.07909",
+      "year": "2015"
+    },
+    {
+      "type": "article",
+      "key": "nton06",
+      "author": "Hinton Geoffrey E. and Osindero Simon and Teh Yee Whye",
+      "journal": "Neural Computation",
+      "pages": "1527--1554",
+      "title": "A Fast Learning Algorithm for Deep Belief Nets",
+      "volume": "18",
+      "year": "2006"
     },
     {
       "type": "book",
+      "key": "llow20",
+      "title": "Deep learning",
+      "author": "Goodfellow Ian and Bengio Yoshua and Courville Aaron and Bengio Yoshua",
+      "volume": "1",
+      "year": "2016",
+      "publisher": "MIT Press"
+    },
+    {
+      "type": "InProceedings",
+      "key": "olov20",
+      "author": "Nikolov Nikola  and  Hu Yuhuang  and  Tan Mi Xue  and  Hahnloser Richard H.R.",
+      "title": "Proceedings of the Third Conference on Machine Translation Volume 1: Research Papers",
+      "month": "October",
+      "year": "2018",
+      "address": "Belgium Brussels",
+      "publisher": "Association for Computational Linguistics",
+      "pages": "10--16"
+    },
+    {
+      "type": "article",
+      "title": "Fully character-level neural machine translation without explicit segmentation",
+      "author": "Lee Jason and Cho Kyunghyun and Hofmann Thomas",
+      "journal": "Transactions of the Association for Computational Linguistics",
+      "volume": "5",
+      "pages": "365--378",
+      "year": "2017",
+      "publisher": "MIT Press"
+    },
+    {
+      "type": "inproceedings",
+      "key": "anau20",
+      "author": "Dzmitry Bahdanau and",
+      "title": "3rd International Conference on Learning Representations ICLR 2015",
+      "year": "2015"
+    },
+    {
+      "type": "inproceedings",
+      "key": "wani20",
+      "title": "Advances in neural information processing systems",
+      "author": "Vaswani Ashish and Shazeer Noam and Parmar Niki and Uszkoreit Jakob and Jones Llion and Gomez Aidan N and Kaiser \\Lukasz and Polosukhin Illia",
+      "pages": "5998--6008",
+      "year": "2017"
+    },
+    {
+      "type": "inproceedings",
+      "key": "vlin20",
+      "title": "Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies Volume 1 (Long and Short Papers)",
+      "author": "Devlin Jacob  and",
+      "year": "2019",
+      "address": "Minneapolis Minnesota",
+      "publisher": "Association for Computational Linguistics",
+      "doi": "10.18653/v1/N19-1423",
+      "pages": "4171--4186"
+    },
+    {
+      "type": "inproceedings",
+      "title": "Proceedings of the AAAI Conference on Artificial Intelligence",
+      "author": "Al-Rfou Rami and Choe Dokook and Constant Noah and Guo Mandy and Jones Llion",
+      "volume": "33",
+      "pages": "3159--3166",
+      "year": "2019"
+    },
+    {
+      "type": "inproceedings",
+      "title": "Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+      "author": "Luong Minh-Thang  and",
+      "month": "aug",
+      "year": "2016",
+      "address": "Berlin Germany",
+      "publisher": "Association for Computational Linguistics",
+      "url": "https://www.aclweb.org/anthology/P16-1100",
+      "doi": "10.18653/v1/P16-1100",
+      "pages": "1054--1063"
+    },
+    {
+      "type": "inproceedings",
+      "key": "rcos20",
+      "title": "Advances in Neural Information Processing Systems",
+      "author": "Morcos Ari and Raghu Maithra and Bengio Samy",
+      "pages": "5727--5736",
+      "year": "2018"
+    },
+    {
+      "type": "incollection",
+      "key": "yang20",
+      "title": "Advances in Neural Information Processing Systems 32",
+      "author": "Yang Zhilin and Dai Zihang and Yang Yiming and Carbonell Jaime and Salakhutdinov Russ R and Le Quoc V",
+      "pages": "5754--5764",
+      "year": "2019",
+      "publisher": "Curran Associates Inc."
+    },
+    {
+      "type": "inproceedings",
+      "title": "Proceedings of the IEEE conference on computer vision and pattern recognition",
+      "author": "He Kaiming and Zhang Xiangyu and Ren Shaoqing and Sun Jian",
+      "pages": "770--778",
+      "year": "2016"
+    },
+    {
+      "type": "inproceedings",
+      "key": "neni20",
+      "title": "Proceedings of the 40th annual meeting on association for computational linguistics",
+      "author": "Papineni Kishore and Roukos Salim and Ward Todd and Zhu Wei-Jing",
+      "pages": "311--318",
+      "year": "2002",
+      "organization": "Association for Computational Linguistics"
+    },
+    {
+      "type": "inproceedings",
+      "key": "oehn20",
+      "title": "Proceedings of the 45th annual meeting of the association for computational linguistics companion volume proceedings of the demo and poster sessions",
+      "author": "Koehn Philipp and Hoang Hieu and Birch Alexandra and Callison-Burch Chris and Federico Marcello and Bertoldi Nicola and Cowan Brooke and Shen Wade and Moran Christine and Zens Richard and others",
+      "pages": "177--180",
+      "year": "2007"
+    },
+    {
+      "type": "inproceedings",
+      "key": "mski20",
+      "title": "Proceedings of the Tenth International Conference on Language Resources and Evaluation (LREC 2016)",
+      "author": "Ziemski Micha\\l and Junczys-Dowmunt Marcin and Pouliquen Bruno",
+      "pages": "3530--3534",
+      "year": "2016"
+    },
+    {
+      "type": "inproceedings",
+      "key": "erry20",
       "title": "Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing",
+      "author": "Cherry Colin  and",
       "year": "2018",
       "address": "Brussels Belgium",
       "publisher": "Association for Computational Linguistics",

@@ -1,21 +1,28 @@
 const fs = require('fs');
 const path = require('path');
-const { parseBibtex } = require('./parsers/bibtexParsers');
+const { fileExistsCheck, isValidJSON } = require('./utilities/validation');
+const { parseBibtex, parseToBibtex } = require('./parsers/bibtexParsers');
 
 /**
- * @function - Checks if the file exists
+ * @function - Converts JSON to BibTeX
  * @param {string, buffer, URL} path
- * @returns {error}
+ * @returns {JSON}
  */
 
-const fileExistsCheck = (loc) => {
-  fs.access(path.join(__dirname, loc), fs.constants.F_OK, (err) => {
-    if (err) {
-      return err;
+const jsonToBibtex = (loc, property) => new Promise((resolve, reject) => {
+  let error = fileExistsCheck(loc);
+  fs.readFile(path.join(__dirname, loc), 'utf8', (err, data) => {
+    error = err;
+    const valid = isValidJSON(data.toString());
+    if (valid && !error) {
+      const parsedData = parseToBibtex(data.toString(), property);
+      resolve(parsedData);
+    } else {
+      const invalid = new Error('Invalid JSON');
+      reject(invalid.message);
     }
-    return null;
   });
-};
+});
 
 /**
  * @function - Converts BibTeX to JSON
@@ -39,4 +46,5 @@ const bibtexToJSON = (loc) => new Promise((resolve, reject) => {
 module.exports = {
   fileExistsCheck,
   bibtexToJSON,
+  jsonToBibtex,
 };
