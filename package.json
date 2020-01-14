@@ -1,6 +1,6 @@
 {
   "name": "@devisle/reference-js",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Conversion library for Reference Manager formats",
   "license": "MIT",
   "repository": "devisle/reference-js",
@@ -12,8 +12,8 @@
   },
   "files": [
     "index.js",
-    "./parsers",
-    "./utilities"
+    "parsers/*",
+    "utilities/*"
   ],
   "lint-staged": {
     "**/*.js": [
