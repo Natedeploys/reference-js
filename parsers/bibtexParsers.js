@@ -4,9 +4,12 @@ const { createToken } = chevrotain;
 
 const typeProperty = createToken({
   name: 'Type',
-  pattern: /@ARTICLE|@BOOK|@INCOLLECTION|@PHDTHESIS|@TECHREPORT|@MISC|@INPROCEEDINGS/i,
+  pattern: /@ARTICLE|@BOOK|@INCOLLECTION|@PHDTHESIS|@TECHREPORT|@MISC|@INPROCEEDINGS|@UNPUBLISHED/i,
 });
-const keyProperty = createToken({ name: 'Key', pattern: /[a-z]{4}[0-9][0-9]/i });
+const keyProperty = createToken({
+  name: 'Key',
+  pattern: /([a-zA-Z+-]{2,}[0-9]{2,}[a-zA-Z]*)/i,
+});
 const generalProperty = createToken({
   name: 'Field',
   pattern: /AUTHOR.*|TITLE.*|JOURNAL.*|VOLUME.*|YEAR.*|NUMBER.*|PAGES.*|EDITION.*|PUBLISHER.*|ADDRESS.*|VOLUME.*|SERIES.*|BOOKTITLE.*|EDITOR.*|NOTE.*|HOWPUBLISHED.*|DOI.*|MONTH.*|URL.*|ORGANIZATION.*/i,
@@ -32,7 +35,7 @@ const transformToJSON = (parsedData) => {
     }
 
     if (name === 'Key') {
-      item.key = image;
+      item.key = image.replace(/{/, '');
     }
 
     if (name === 'Field') {
@@ -66,7 +69,10 @@ const parseBibtex = (data) => {
     /ARTICLE|BOOK|INCOLLECTION|PHDTHESIS|TECHREPORT|MISC|INPROCEEDINGS/gim,
     '$&\n',
   );
-  const cleansed = typeLine.replace(/['*{},"]/gm, '');
+  const doubleDashes = typeLine.replace(/--/gm, '-');
+  const cleansed = doubleDashes.replace(/['*{},"]/gm, '');
+
+  // console.log(cleansed);
   const parsedData = SelectLexer.tokenize(cleansed);
 
   return transformToJSON(parsedData);
@@ -78,8 +84,26 @@ const parseBibtex = (data) => {
  * @returns {.bib}
  */
 
-const parseToBibtex = (data) => {
-  JSON.parse(data);
+const parseToBibtex = (data, property) => {
+  let bibtex = '';
+  const list = JSON.parse(data);
+  list[property].forEach((item) => {
+    Object.keys(item).forEach((key) => {
+      switch (key) {
+        case 'type':
+          bibtex += `@${item[key]}`;
+          break;
+        case 'key':
+          bibtex += `{${item[key]},\n`;
+          break;
+        default:
+          bibtex += `${key} = ${item[key]},\n`;
+      }
+    });
+    bibtex += '}\n';
+  });
+
+  return bibtex;
 };
 
 module.exports = {

@@ -9,13 +9,13 @@ const { parseBibtex, parseToBibtex } = require('./parsers/bibtexParsers');
  * @returns {JSON}
  */
 
-const jsonToBibtex = (loc) => new Promise((resolve, reject) => {
+const jsonToBibtex = (loc, property) => new Promise((resolve, reject) => {
   let error = fileExistsCheck(loc);
   fs.readFile(path.join(__dirname, loc), 'utf8', (err, data) => {
     error = err;
     const valid = isValidJSON(data.toString());
     if (valid && !error) {
-      const parsedData = parseToBibtex(data.toString());
+      const parsedData = parseToBibtex(data.toString(), property);
       resolve(parsedData);
     } else {
       const invalid = new Error('Invalid JSON');
