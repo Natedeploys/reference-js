@@ -1,21 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-
-/**
- * @function - Checks if a file exists
- * @param {string, buffer, URL} path
- * @returns {error}
- */
-
-const fileExistsCheck = (loc) => {
-  fs.access(path.join(__dirname, loc), fs.constants.F_OK, (err) => {
-    if (err) {
-      return err;
-    }
-    return null;
-  });
-};
-
 /**
  * @function - Checks if the JSON is valid
  * @param {string, buffer, URL} path
@@ -41,6 +23,5 @@ const isValidJSON = (json) => {
 };
 
 module.exports = {
-  fileExistsCheck,
   isValidJSON,
 };

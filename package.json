@@ -10,6 +10,11 @@
     "lint": "eslint '**/*.js' --fix",
     "format": "prettier-eslint $PWD/'**/*.js' --write"
   },
+  "files": [
+    "index.js",
+    "./parsers",
+    "./utilities"
+  ],
   "lint-staged": {
     "**/*.js": [
       "eslint --fix",

@@ -32,7 +32,7 @@ const SelectLexer = new chevrotain.Lexer(
 /**
  * @function - Transforms a token vector into JSON
  * @param {vector} Tokens
- * @returns {Array}
+ * @returns {.json}
  */
 
 const transformToJSON = (parsedData) => {
@@ -73,7 +73,10 @@ const transformToJSON = (parsedData) => {
     }
   });
 
-  return bibtexArray;
+  return {
+    total: bibtexArray.length + 1,
+    references: bibtexArray,
+  };
 };
 
 /**
@@ -99,29 +102,33 @@ const parseBibtex = (data) => {
 /**
  * @function - Transform JSON into Bibtex
  * @param {JSON}
- * @returns {.bib}
+ * @returns {string}
  */
 
 const parseToBibtex = (data, property) => {
   let bibtex = '';
   const list = JSON.parse(data);
-  list[property].forEach((item) => {
-    Object.keys(item).forEach((key) => {
-      switch (key) {
-        case 'type':
-          bibtex += `@${item[key]}`;
-          break;
-        case 'key':
-          bibtex += `{${item[key]},\n`;
-          break;
-        default:
-          bibtex += `${key} = ${item[key]},\n`;
-      }
+  try {
+    list[property].forEach((item) => {
+      Object.keys(item).forEach((key) => {
+        switch (key) {
+          case 'type':
+            bibtex += `@${item[key]}`;
+            break;
+          case 'key':
+            bibtex += `{${item[key]},\n`;
+            break;
+          default:
+            bibtex += `${key} = ${item[key]},\n`;
+        }
+      });
+      bibtex += '}\n';
     });
-    bibtex += '}\n';
-  });
 
-  return bibtex;
+    return bibtex;
+  } catch (_) {
+    throw new Error('Check the object property is an array or is named correctly');
+  }
 };
 
 module.exports = {

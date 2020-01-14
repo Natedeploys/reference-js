@@ -1,50 +1,40 @@
-const fs = require('fs');
-const path = require('path');
-const { fileExistsCheck, isValidJSON } = require('./utilities/validation');
+const { isValidJSON } = require('./utilities/validation');
 const { parseBibtex, parseToBibtex } = require('./parsers/bibtexParsers');
 
 /**
  * @function - Converts JSON to BibTeX
- * @param {string, buffer, URL} path
- * @returns {JSON}
+ * @param {string} content
+ * @returns {Promise}
  */
 
-const jsonToBibtex = (loc, property) => new Promise((resolve, reject) => {
-  let error = fileExistsCheck(loc);
-  fs.readFile(path.join(__dirname, loc), 'utf8', (err, data) => {
-    error = err;
-    const valid = isValidJSON(data.toString());
-    if (valid && !error) {
-      const parsedData = parseToBibtex(data.toString(), property);
-      resolve(parsedData);
-    } else {
-      const invalid = new Error('Invalid JSON');
-      reject(invalid.message);
-    }
-  });
+const jsonToBibtex = (data, property) => new Promise((resolve, reject) => {
+  const valid = isValidJSON(data.toString());
+  if (valid) {
+    const parsedData = parseToBibtex(data.toString(), property);
+    resolve(parsedData);
+  } else {
+    const invalid = new Error('Invalid JSON');
+    reject(invalid.message);
+  }
 });
 
 /**
  * @function - Converts BibTeX to JSON
- * @param {string, buffer, URL} path
- * @returns {JSON}
+ * @param {string} content
+ * @returns {Promise}
  */
 
-const bibtexToJSON = (loc) => new Promise((resolve, reject) => {
-  let error = fileExistsCheck(loc);
-  fs.readFile(path.join(__dirname, loc), 'utf8', (err, data) => {
-    error = err;
-    if (!error) {
-      const parsedData = parseBibtex(data);
-      resolve(parsedData);
-    } else {
-      reject(error.message);
-    }
-  });
+const bibtexToJSON = (content) => new Promise((resolve, reject) => {
+  if (content) {
+    const parsedData = parseBibtex(content);
+    resolve(parsedData);
+  } else {
+    const error = new Error('Data passed in is invalid');
+    reject(error.message);
+  }
 });
 
 module.exports = {
-  fileExistsCheck,
   bibtexToJSON,
   jsonToBibtex,
 };
