@@ -1,6 +1,13 @@
+const fs = require('fs');
+const path = require('path');
 const { jsonToBibtex } = require('../index');
 
-// Pass in JSON or file, provide property to access array of objects
-jsonToBibtex('/samples/references.json', 'references')
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+// Read or access your file however you want,
+// just pass in the file contents.
+fs.readFile(path.join(__dirname, '../samples/references.json'), 'utf8', (_, content) => {
+  // Pass in the content and JSON property
+  // holding array fo objects
+  jsonToBibtex(content, 'references')
+    .then((data) => console.log(data))
+    .catch((error) => console.log(error));
+});

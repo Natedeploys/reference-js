@@ -44,10 +44,10 @@ npm install @devisle/reference-js
 Use like below
 
 ```js
-const { BibTeXToJSON } = require("@devisle/reference-js");
+const { bibtexToJSON } = require("@devisle/reference-js");
 
-//Returns JSON
-BibTeXToJSON("file:///current/dir/references.bib");
+//Read your .bib and pass the content
+bibtexToJSON(content);
 ```
 
 See the documentation [here](https://devisle.netlify.com/)
@@ -72,12 +72,6 @@ You will need NodeJS and NPM. Not sure if you have node or npm? use in your term
 node -v
 ```
 
-or
-
-```
-node hello.js
-```
-
 ### Installing
 
 Install the package with
@@ -86,36 +80,17 @@ Install the package with
 npm install @devisle/reference-js
 ```
 
-Require in Node as
+## 🔧 Contributors
 
-```js
-const { BibTeXToJSON } = require("@devisle/reference-js");
+See the [To do](TODO.md) for required features to work on.
 
-//Returns JSON
-BibTeXToJSON("file:///current/dir/references.bib");
-```
-
-## 🔧 Running the tests <a name = "tests"></a>
-
-Each function is tested agaisnt before release.
-
-### Contributors
-
-Run the tests using:
-
-```
-npm run test
-```
-
-Further information on [Contributing](CONTRIBUTING.md)
+Further information on how to contribute [Here](CONTRIBUTING.md).
 
 ## 🎈 Usage <a name="usage"></a>
 
 Formats from Reference managers can be converted into JSON and back. Using this approach, you are able to leverage the library to convert between other formats e.g. Bibtex to JSON to RIS behind the scenes.
 
-For further code demos, see the examples folder.
-
-API Coming soon.
+See the documentation [here](https://devisle.netlify.com/)
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
