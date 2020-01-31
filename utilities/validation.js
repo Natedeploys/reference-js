@@ -12,6 +12,7 @@ const isValidJSON = (json) => {
   try {
     item = JSON.parse(item);
   } catch (e) {
+    console.log(e.message);
     return false;
   }
 
