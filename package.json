@@ -4,6 +4,7 @@
   "description": "Conversion library for Reference Manager formats",
   "license": "MIT",
   "repository": "devisle/reference-js",
+  "homepage": "https://devisle.netlify.com",
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose",
